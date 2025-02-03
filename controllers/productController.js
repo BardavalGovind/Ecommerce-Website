@@ -76,7 +76,7 @@ export const getSingleProductController = async (req, res)=>{
     try{
         const product = await productModels
         .findOne({slug:req.params.slug})
-        .select("-phote")
+        .select("-photo")
         .populate("category");
 
         res.status(200).send({
@@ -99,10 +99,11 @@ export const getSingleProductController = async (req, res)=>{
 export const productPhotoController = async (req, res)=>{
     try{
         const product = await productModels.findById(req.params.pid).select("photo");
-        if(product.photo.data){
-            res.set('Content-type', product.photo.contentType);
-            return res.status(200).send(product.photo.data)
+        if (!product || !product.photo || !product.photo.data) {
+            return res.status(404).send({ success: false, message: "Photo not found" });
         }
+        res.set("Content-Type", product.photo.contentType);
+        return res.status(200).send(product.photo.data);
     }
     catch(error){
         res.status(500).send({

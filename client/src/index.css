@@ -100,3 +100,8 @@
   justify-content: center;
 }
 
+/* ======================= */
+.product-link{
+  text-decoration: node !important;
+  color: black !important;
+}
