@@ -229,7 +229,7 @@ export const productCountController = async (req, res)=>{
 export const productListController = async (req, res)=>{
     try{
         const perPage = 6;
-        const page = req.parmas.page ? req.params.page : 1;
+        const page = req.params.page ? req.params.page : 1;
         const products = await productModels
         .find({}).select("-photo")
         .skip((page-1) * perPage)
@@ -258,8 +258,7 @@ export const searchProductController = async (req, res)=>{
         const results = await productModels.find({
             $or: [
                 {name:{$regex : keyword, $options:"i"}},
-                {description:{$regex : keyword, $options:"i"}},
-                
+                {description:{$regex : keyword, $options:"i"}}, 
             ]
         }).select("-photo");
         res.json(results);
@@ -298,7 +297,6 @@ export const realtedProductController = async (req, res) => {
       });
     }
   };
-
 
 // get product by category
 export const productCategoryController = async (req, res) => {
