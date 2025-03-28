@@ -30,10 +30,8 @@ Payments: Braintree
 
 Installation & Usage
 
-Clone the repository: git clone <repo-url>
+Clone the repository: git clone https://github.com/BardavalGovind/Ecommerce-Website.git
 
 Install dependencies: npm install
 
-Start the backend server: npm start
-
-Navigate to the frontend and start the React app: npm start
+Start the backend server and frontend with one command: npm run dev
